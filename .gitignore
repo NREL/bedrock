@@ -23,3 +23,8 @@ web/.htaccess
 
 # WP-CLI
 wp-cli.local.yml
+
+Vagrantfile.local
+config/local.config.yml
+
+.vagrant

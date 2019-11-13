@@ -1,0 +1,31 @@
+vagrant_hostname: bedrock.test
+vagrant_machine_name: bedrock
+
+vagrant_synced_folders:
+  - local_path: .
+    destination: /var/www/wordpress
+    type: nfs
+    create: true
+
+# Needs to match with what we have in .env and vagrant_synced_folders.
+drupal_core_path: "/var/www/wordpress/web"
+drupal_domain: "{{ vagrant_hostname }}"
+drupal_db_user: wordpress
+drupal_db_password: wordpress
+drupal_db_name: wordpress
+
+# Disable Drupal specific features.
+drupal_build_composer_project: false
+drupal_install_site: false
+configure_drush_aliases: false
+
+# Remove some Drupal extras such as `drupalconsole` and `drush`
+installed_extras:
+  - adminer
+  - mailhog
+  - pimpmylog
+
+# Add wp-cli
+composer_global_packages:
+  - { name: hirak/prestissimo, release: '^0.3' }
+  - { name: wp-cli/wp-cli, release: '^1.0.0' }
